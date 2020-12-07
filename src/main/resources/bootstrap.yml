@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: patient-module
+  profiles:
+    active: dev
+  config:
+    import: configserver:http://localhost:8888
+  cloud:
+    vault:
+      host: localhost
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: s.3WDC2daCqCvnRTuDxBzp1uou
+      kv-version: 2
+
+server:
+  port: 9100
