@@ -11,17 +11,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class PatientModuleApplication implements CommandLineRunner {
-
-    @Autowired
-    PatientService patientService;
+public class PatientModuleApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PatientModuleApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println(patientService.getPatientId());
-    }
 }
