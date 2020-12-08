@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.playground.patientmodule.enums.Gender;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -14,7 +15,9 @@ import java.util.UUID;
  */
 @Data
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
-public class PatientDto {
+public class PatientDto implements Serializable {
+
+    private static final long serialVersionUID = -1045132217012089475L;
 
     private UUID patientId;
 

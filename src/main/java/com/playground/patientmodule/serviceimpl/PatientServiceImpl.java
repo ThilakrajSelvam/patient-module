@@ -8,6 +8,9 @@ import com.playground.patientmodule.repository.PatientRepository;
 import com.playground.patientmodule.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -52,6 +55,7 @@ public class PatientServiceImpl implements PatientService {
      * @param patientId
      * @return
      */
+    @Cacheable(key = "#patientId", value = "old_age_patients", unless = "#result.getAge() < 40")
     public PatientDto viewPatient(UUID patientId) {
         Optional<Patient> patient = patientRepository.findById(patientId);
 
@@ -68,6 +72,7 @@ public class PatientServiceImpl implements PatientService {
      * @param patientDto
      * @return
      */
+    @CachePut(key = "#patientDto.patientId", value = "patients")
     public PatientDto updatePatient(PatientDto patientDto) {
         if (!patientRepository.existsById(patientDto.getPatientId()))
             throw new PatientNotFoundException();
@@ -83,6 +88,7 @@ public class PatientServiceImpl implements PatientService {
      *
      * @param patientId
      */
+    @CacheEvict(key = "#patientId", value = "patients")
     public void removePatient(UUID patientId) {
         try {
             patientRepository.deleteById(patientId);
