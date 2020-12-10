@@ -13,6 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableCaching
+@EnableDiscoveryClient
 public class PatientModuleApplication {
 
     public static void main(String[] args) {
