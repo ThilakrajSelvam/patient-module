@@ -21,6 +21,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
+ * PatientServiceImpl provides the services for patients
+ *
  * @author thilak
  * @created 12/7/20
  */

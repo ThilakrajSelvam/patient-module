@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,7 +33,7 @@ public class PatientController {
     @PostMapping
     @ApiOperation(value = "Saves the patient details")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public PatientDto createPatient(@RequestBody PatientDto patientDto) {
+    public PatientDto createPatient(@Valid @RequestBody PatientDto patientDto) {
         return patientService.createPatient(patientDto);
     }
 
@@ -56,7 +57,7 @@ public class PatientController {
      */
     @PutMapping
     @ApiOperation(value = "Updates the patient details")
-    public PatientDto updatePatient(@RequestBody PatientDto patientDto) {
+    public PatientDto updatePatient(@Valid @RequestBody PatientDto patientDto) {
         return patientService.updatePatient(patientDto);
     }
 
